@@ -1,9 +1,14 @@
 const symbols = ["🎰", "🍒", "🍋", "🍇", "⭐"];
 const payouts = { "🎰": 50, "🍒": 10, "🍋": 10, "🍇": 10, "⭐": 20 };
 
-let credits = 100;
+let credits = parseInt(localStorage.getItem('Credits')) || 100;
+
 let bet = 10;
 let spinning = false;
+localStorage.setItem('Credits', credits);
+
+
+
 
 const creditsEl = document.getElementById('credits');
 const betEl = document.getElementById('bet-display');
@@ -14,6 +19,8 @@ const betPlus = document.getElementById('bet-plus');
 const escBtn = document.getElementById('esc');
 const reels = [document.getElementById('reel0'), document.getElementById('reel1'), document.getElementById('reel2')];
 
+updateDisplay();
+
 function randomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
@@ -21,6 +28,7 @@ function randomSymbol() {
 function updateDisplay() {
   creditsEl.textContent = credits;
   betEl.textContent = bet;
+  localStorage.setItem('Credits', credits);   // ← neu
 }
 
 betMinus.addEventListener('click', () => {
