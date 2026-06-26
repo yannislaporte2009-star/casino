@@ -54,11 +54,5 @@ document.getElementById('esc').addEventListener('click', () => {
   window.location.href = "index.html";
 });
 
-document.getElementById('esc').addEventListener('click', () => {
-  if (confirm('Bestenliste wirklich löschen?')) {
-    localStorage.removeItem('highscores');
-    renderHighscores();
-  }
-});
 
 renderHighscores();

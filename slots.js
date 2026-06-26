@@ -29,17 +29,21 @@ function updateDisplay() {
 }
 
 // Speichert einen Gewinn in der Bestenliste (localStorage)
-function saveHighscore(score) {
+function saveHighscore() {
   let name = localStorage.getItem('playerName');
   if (!name) {
-    name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
+    try {
+      name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
+    } catch (e) {
+      name = "Spieler";
+    }
     localStorage.setItem('playerName', name);
   }
 
   const data = localStorage.getItem('highscores');
   const list = data ? JSON.parse(data) : [];
 
-  list.push({ name: name, score: score });
+  list.push({ name: name, score: credits });
   localStorage.setItem('highscores', JSON.stringify(list));
 }
 
@@ -109,7 +113,7 @@ spinBtn.addEventListener('click', async () => {
   }
 
   if (win > 0) {
-    saveHighscore(win);
+    saveHighscore();
   }
 
   updateDisplay();
