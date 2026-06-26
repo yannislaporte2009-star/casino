@@ -67,8 +67,4 @@ document.getElementById('esc').addEventListener('click', () => {
   window.location.href = "index.html";
 });
 
-document.getElementById('clear-scores').addEventListener('click', () => {
-  alert('Die gemeinsame Bestenliste kann aus Sicherheitsgründen nicht über die Webseite gelöscht werden. Das verhindert, dass andere Besucher sie versehentlich oder absichtlich leeren.');
-});
-
 renderHighscores();
