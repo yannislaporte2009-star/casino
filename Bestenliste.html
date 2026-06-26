@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Bestenliste - Slot Maschine</title>
+  <link rel="stylesheet" href="format.css">
+</head>
+<body>
+  <div class="menu">
+    <div class="status-bar">
+      <button id="esc">Menu</button>
+      <div>Bestenliste</div>
+    </div>
+
+    <table id="highscore-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Punktzahl</th>
+        </tr>
+      </thead>
+      <tbody id="highscore-body">
+        <!-- wird per JavaScript befüllt -->
+      </tbody>
+    </table>
+
+    <p id="empty-message" style="display:none;">Noch keine Einträge. Spiel eine Runde und gewinne, um hier zu erscheinen!</p>
+
+    <button id="clear-scores">Bestenliste löschen</button>
+  </div>
+
+  <script src="bestenliste.js"></script>
+</body>
+</html>
