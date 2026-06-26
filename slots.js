@@ -141,8 +141,12 @@ spinBtn.addEventListener('click', async () => {
   }
   spinning = true;
   spinBtn.disabled = true;
-  betMinus.disabled = true;
-  betPlus.disabled = true;
+  betMinus10.disabled = true;
+  betPlus10.disabled = true;
+  betMinus100.disabled = true;
+  betPlus100.disabled = true;
+  betMinus1000.disabled = true;
+  betPlus1000.disabled = true;
   credits -= bet;
   updateDisplay();
   messageEl.textContent = "Walzen drehen...";
