@@ -43,7 +43,16 @@ function saveHighscore() {
   const data = localStorage.getItem('highscores');
   const list = data ? JSON.parse(data) : [];
 
-  list.push({ name: name, score: credits });
+  const existingEntry = list.find(entry => entry.name === name);
+
+  if (existingEntry) {
+    if (credits > existingEntry.score) {
+      existingEntry.score = credits;
+    }
+  } else {
+    list.push({ name: name, score: credits });
+  }
+
   localStorage.setItem('highscores', JSON.stringify(list));
 }
 
