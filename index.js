@@ -1,7 +1,7 @@
 
-let credits = parseInt(localStorage.getItem('slotCredits')) || 100;
+let credits = parseInt(localStorage.getItem('Credits')) || 100;
  
-const creditsEl = document.getElementById('credits');
+const creditsEl = document.getElementById('Credits');
  
 function updateDisplay() {
   creditsEl.textContent = credits;
