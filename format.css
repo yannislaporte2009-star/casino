@@ -108,3 +108,99 @@
   min-width: 50px;
   text-align: center;
 }
+
+/* ===== Bestenliste ===== */
+
+#highscore-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+#highscore-table th,
+#highscore-table td {
+  padding: 10px 14px;
+  text-align: left;
+}
+
+#highscore-table th {
+  background: #333;
+  color: #aaa;
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+#highscore-table td {
+  border-top: 1px solid #3a3a3a;
+  color: #eee;
+}
+
+#highscore-table tbody tr:first-child td {
+  color: #f1c40f;
+  font-weight: bold;
+}
+
+#empty-message {
+  font-size: 14px;
+  color: #ccc;
+  text-align: center;
+}
+
+#clear-scores {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#clear-scores:hover {
+  background: #c0392b;
+}
+
+#esc {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#esc:hover {
+  background: #555;
+}
+
+.maschinen.auswahl {
+  display: flex;
+  gap: 12px;
+}
+
+.maschinen.auswahl button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.maschinen.auswahl button:hover {
+  background: #555;
+}
+
+#highscore-button {
+  background: #c0392b !important;
+}
+
+#highscore-button:hover {
+  background: #d35400 !important;
+}
