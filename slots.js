@@ -11,8 +11,12 @@ const creditsEl = document.getElementById('credits');
 const betEl = document.getElementById('bet-display');
 const messageEl = document.getElementById('message');
 const spinBtn = document.getElementById('spin-btn');
-const betMinus = document.getElementById('bet-minus');
-const betPlus = document.getElementById('bet-plus');
+const betMinus10 = document.getElementById('bet-minus-10');
+const betMinus100 = document.getElementById('bet-minus-100');
+const betMinus1000 = document.getElementById('bet-minus-1000');
+const betPlus10 = document.getElementById('bet-plus-10');
+const betPlus100 = document.getElementById('bet-plus-100');
+const betPlus1000 = document.getElementById('bet-plus-1000');
 const escBtn = document.getElementById('esc');
 const reels = [document.getElementById('reel0'), document.getElementById('reel1'), document.getElementById('reel2')];
 
@@ -76,15 +80,37 @@ async function saveHighscore() {
   }
 }
 
-betMinus.addEventListener('click', () => {
+betMinus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 10);
+  bet = Math.max(10, bet - 1000);
+  updateDisplay();
+});
+betMinus100.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 1000);
+  updateDisplay();
+});
+betMinus1000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 1000);
   updateDisplay();
 });
 
-betPlus.addEventListener('click', () => {
+betPlus10.addEventListener('click', () => {
   if (spinning) return;
   bet = Math.min(1000000, bet + 10);
+  updateDisplay();
+});
+
+betPlus100.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000, bet + 100);
+  updateDisplay();
+});
+
+betPlus1000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000, bet + 1000);
   updateDisplay();
 });
 
