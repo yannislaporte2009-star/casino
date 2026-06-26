@@ -82,12 +82,12 @@ async function saveHighscore() {
 
 betMinus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 1000);
+  bet = Math.max(10, bet - 10);
   updateDisplay();
 });
 betMinus100.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 1000);
+  bet = Math.max(10, bet - 100);
   updateDisplay();
 });
 betMinus1000.addEventListener('click', () => {
