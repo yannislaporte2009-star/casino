@@ -1,6 +1,6 @@
-let credits = parseInt(localStorage.getItem('Credits')) || 100;
+let credits = parseInt(localStorage.getItem('slotCredits')) || 100;
 
-const creditsEl = document.getElementById('Credits');
+const creditsEl = document.getElementById('credits');
 
 function updateDisplay() {
   creditsEl.textContent = credits;
@@ -8,16 +8,21 @@ function updateDisplay() {
 
 updateDisplay();
 
-
+// Spielername einmalig abfragen und in localStorage speichern
 function getPlayerName() {
   let name = localStorage.getItem('playerName');
   if (!name) {
-    name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
+    try {
+      name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
+    } catch (e) {
+      name = "Spieler";
+    }
     localStorage.setItem('playerName', name);
   }
   return name;
 }
 
+// Sicherstellen, dass beim ersten Besuch direkt nach dem Namen gefragt wird
 getPlayerName();
 
 const slotsBTN = document.getElementById('slot-machine');

@@ -1,14 +1,11 @@
 const symbols = ["🎰", "🍒", "🍋", "🍇", "⭐"];
 const payouts = { "🎰": 50, "🍒": 10, "🍋": 10, "🍇": 10, "⭐": 20 };
 
-let credits = parseInt(localStorage.getItem('Credits')) || 100;
+let credits = parseInt(localStorage.getItem('slotCredits')) || 100;
 
 let bet = 10;
 let spinning = false;
-localStorage.setItem('Credits', credits);
-
-
-
+localStorage.setItem('slotCredits', credits);
 
 const creditsEl = document.getElementById('credits');
 const betEl = document.getElementById('bet-display');
@@ -28,7 +25,22 @@ function randomSymbol() {
 function updateDisplay() {
   creditsEl.textContent = credits;
   betEl.textContent = bet;
-  localStorage.setItem('Credits', credits);   // ← neu
+  localStorage.setItem('slotCredits', credits);
+}
+
+// Speichert einen Gewinn in der Bestenliste (localStorage)
+function saveHighscore(score) {
+  let name = localStorage.getItem('playerName');
+  if (!name) {
+    name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
+    localStorage.setItem('playerName', name);
+  }
+
+  const data = localStorage.getItem('highscores');
+  const list = data ? JSON.parse(data) : [];
+
+  list.push({ name: name, score: score });
+  localStorage.setItem('highscores', JSON.stringify(list));
 }
 
 betMinus.addEventListener('click', () => {
@@ -82,16 +94,22 @@ spinBtn.addEventListener('click', async () => {
     spinReel(reels[2], 1200)
   ]);
 
+  let win = 0;
+
   if (results[0] === results[1] && results[1] === results[2]) {
-    const win = bet * payouts[results[0]];
+    win = bet * payouts[results[0]];
     credits += win;
     messageEl.textContent = "Gewonnen! +" + win + " Guthaben";
   } else if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) {
-    const win = Math.round(bet * 2);
+    win = Math.round(bet * 2);
     credits += win;
     messageEl.textContent = "Zwei gleiche! +" + win + " Guthaben";
   } else {
     messageEl.textContent = "Leider verloren. Nochmal versuchen!";
+  }
+
+  if (win > 0) {
+    saveHighscore(win);
   }
 
   updateDisplay();
