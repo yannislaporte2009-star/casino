@@ -178,8 +178,13 @@ spinBtn.addEventListener('click', async () => {
   updateDisplay();
   spinning = false;
   spinBtn.disabled = false;
-  betMinus.disabled = false;
-  betPlus.disabled = false;
+  betPlus10.disabled = false;
+  betMinus10.disabled = false;
+  betPlus100.disabled = false;
+  betMinus100.disabled = false;
+  betPlus1000.disabled = false;
+  betMinus1000.disabled = false;
+
 
   if (credits <= 0) {
     messageEl.textContent = "Guthaben aufgebraucht. Spiel wird zurückgesetzt.";
