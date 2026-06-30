@@ -37,6 +37,12 @@ rouletteBTN.addEventListener('click', () => {
   window.location.href = "roulette.html";
 });
 
+const blackjackBTN = document.getElementById('blackjack');
+
+blackjackBTN.addEventListener('click', () => {
+  window.location.href = "blackjack.html";
+});
+
 const highscoreBTN = document.getElementById('highscore-button');
 
 highscoreBTN.addEventListener('click', () => {
