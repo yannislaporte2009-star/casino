@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Roulette</title>
+  <link rel="stylesheet" href="format.css">
+</head>
+<body>
+  <div class="menu">
+    <div class="status-bar">
+      <button id="esc">Menu</button>
+      <div>Credits: <span id="credits">0</span></div>
+      <div>Einsatz: <span id="bet-display">0</span></div>
+    </div>
+
+    <div class="roulette-wheel" id="wheel">0</div>
+
+    <p id="message">Platziere deine Wette!</p>
+
+    <div class="controls">
+      <button id="bet-minus">-10</button>
+      <span class="bet-label">Einsatz</span>
+      <button id="bet-plus">+10</button>
+    </div>
+
+    <div class="bet-type">
+      <label><input type="radio" name="bet-type" value="color" checked> Farbe</label>
+      <label><input type="radio" name="bet-type" value="parity"> Gerade/Ungerade</label>
+      <label><input type="radio" name="bet-type" value="number"> Zahl</label>
+    </div>
+
+    <div class="bet-options" id="color-options">
+      <button class="bet-choice" data-choice="red">Rot</button>
+      <button class="bet-choice" data-choice="black">Schwarz</button>
+    </div>
+
+    <div class="bet-options" id="parity-options" style="display:none;">
+      <button class="bet-choice" data-choice="even">Gerade</button>
+      <button class="bet-choice" data-choice="odd">Ungerade</button>
+    </div>
+
+    <div class="bet-options" id="number-options" style="display:none;">
+      <input type="number" id="number-input" min="0" max="36" value="0">
+    </div>
+
+    <button id="spin-btn">Spin</button>
+  </div>
+
+  <script src="roulette.js"></script>
+</body>
+</html>
