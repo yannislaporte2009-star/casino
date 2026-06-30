@@ -97,13 +97,13 @@ function spinWheel(duration) {
     const interval = setInterval(() => {
       const n = Math.floor(Math.random() * 37);
       wheelEl.textContent = n;
-      wheelEl.style.color = getColor(n) === 'red' ? '#e74c3c' : (getColor(n) === 'black' ? '#fff' : '#2ecc71');
+      wheelEl.style.color = getColor(n) === 'red' ? '#e74c3c' : (getColor(n) === 'black' ? '#000' : '#2ecc71');
       if (Date.now() - start > duration) {
         clearInterval(interval);
         const finalNumber = Math.floor(Math.random() * 37);
         wheelEl.textContent = finalNumber;
         const c = getColor(finalNumber);
-        wheelEl.style.color = c === 'red' ? '#e74c3c' : (c === 'black' ? '#fff' : '#2ecc71');
+        wheelEl.style.color = c === 'red' ? '#e74c3c' : (c === 'black' ? '#000' : '#2ecc71');
         resolve(finalNumber);
       }
     }, 80);
