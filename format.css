@@ -238,14 +238,20 @@
   color: #fff;
   cursor: pointer;
   font-size: 14px;
+ 
 }
 
 .bet-choice:hover {
-  background: #555;
+  background: #000;
 }
 
-.bet-choice.active {
-  background: #c0392b;
+.bet-choice[data-choice="red"].active {
+  background: #fff;
+  color: #e74c3c;
+}
+.bet-choice[data-choice="black"].active {
+  background: #fff;
+  color: #000;
 }
 
 #number-input {
