@@ -95,11 +95,11 @@
   margin-left: 16px;
   padding: 8px 24px;
   font-weight: bold;
-  background: #c0392b;
+  background: #27ae60;
 }
 
 #spin-btn:hover {
-  background: #d35400;
+  background: #27ae60;
 }
 
 .bet-label {
@@ -252,6 +252,15 @@
 .bet-choice[data-choice="black"].active {
   background: #fff;
   color: #000;
+}
+.spin-button {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  background: #27ae60;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 #number-input {
