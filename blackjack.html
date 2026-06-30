@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="format.css">
+</head>
+<body>
+  <div class="menu">
+    <div class="status-bar">
+      <button id="esc">Menu</button>
+      <div>Credits: <span id="credits">0</span></div>
+      <div>Einsatz: <span id="bet-display">0</span></div>
+    </div>
+
+    <div class="dealer-area">
+      <p class="hand-label">Dealer</p>
+      <div class="hand" id="dealer-hand"></div>
+      <p>Punkte: <span id="dealer-score">0</span></p>
+    </div>
+
+    <div class="player-area">
+      <p class="hand-label">Du</p>
+      <div class="hand" id="player-hand"></div>
+      <p>Punkte: <span id="player-score">0</span></p>
+    </div>
+
+    <p id="message">Platziere deinen Einsatz und drücke Deal.</p>
+
+    <div class="controls">
+      <button id="bet-minus">-10</button>
+      <span class="bet-label">Einsatz</span>
+      <button id="bet-plus">+10</button>
+    </div>
+
+    <div class="controls">
+      <button id="deal-btn">Deal</button>
+      <button id="hit-btn" disabled>Hit</button>
+      <button id="stand-btn" disabled>Stand</button>
+    </div>
+  </div>
+
+  <script src="blackjack.js"></script>
+</body>
+</html>
