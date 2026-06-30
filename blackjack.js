@@ -179,10 +179,10 @@ function endRound() {
   let result = "";
 
   if (playerScore > 21) {
-    result = "Überkauft! Verloren.";
+    result = "! Verloren.";
   } else if (dealerScore > 21) {
     win = bet * 2;
-    result = "Dealer überkauft! Gewonnen! +" + win;
+    result = "Dealer überzieht! Gewonnen! +" + win;
   } else if (playerScore > dealerScore) {
     win = bet * 2;
     result = "Gewonnen! +" + win;
