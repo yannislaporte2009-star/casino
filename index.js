@@ -31,6 +31,12 @@ slotsBTN.addEventListener('click', () => {
   window.location.href = "slots.html";
 });
 
+const rouletteBTN = document.getElementById('roulette');
+
+rouletteBTN.addEventListener('click', () => {
+  window.location.href = "roulette.html";
+});
+
 const highscoreBTN = document.getElementById('highscore-button');
 
 highscoreBTN.addEventListener('click', () => {
