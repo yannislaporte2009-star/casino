@@ -15,12 +15,18 @@ const creditsEl = document.getElementById('credits');
 const betEl = document.getElementById('bet-display');
 const messageEl = document.getElementById('message');
 const spinBtn = document.getElementById('spin-btn');
+const betMinus1000000 = document.getElementById('bet-minus-1000000');
+const betMinus100000 = document.getElementById('bet-minus-100000');
+const betMinus10000 = document.getElementById('bet-minus-10000');
 const betMinus1000 = document.getElementById('bet-minus-1000');
 const betMinus100 = document.getElementById('bet-minus-100');
 const betMinus10 = document.getElementById('bet-minus-10');
 const betPlus10 = document.getElementById('bet-plus-10');
 const betPlus100 = document.getElementById('bet-plus-100');
 const betPlus1000 = document.getElementById('bet-plus-1000');
+const betPlus10000 = document.getElementById('bet-plus-10000');
+const betPlus100000 = document.getElementById('bet-plus-100000');
+const betPlus1000000 = document.getElementById('bet-plus-1000000');
 const escBtn = document.getElementById('esc');
 const wheelEl = document.getElementById('wheel');
 const numberInput = document.getElementById('number-input');
@@ -53,6 +59,24 @@ escBtn.addEventListener('click', () => {
   window.location.href = "index.html";
 });
 
+betMinus1000000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 1000000);
+  updateDisplay();
+});
+
+betMinus100000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 100000);
+  updateDisplay();
+});
+
+betMinus10000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 10000);
+  updateDisplay();
+});
+
 betMinus1000.addEventListener('click', () => {
   if (spinning) return;
   bet = Math.max(10, bet - 1000);
@@ -71,21 +95,39 @@ betMinus10.addEventListener('click', () => {
   updateDisplay();
 });
 
-betPlus1000.addEventListener('click', () => {
+betPlus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000, bet + 1000 );
+  bet = Math.min(1000000000, bet + 10 );
   updateDisplay();
 });
 
 betPlus100.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000, bet + 100);
+  bet = Math.min(1000000000, bet + 100);
   updateDisplay();
 });
 
-betPlus10.addEventListener('click', () => {
+betPlus1000.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000, bet + 10);
+  bet = Math.min(1000000000, bet + 1000);
+  updateDisplay();
+});
+
+betPlus1000000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet + 1000000);
+  updateDisplay();
+});
+
+betPlus100000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet + 100000);
+  updateDisplay();
+});
+
+betPlus10000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet + 10000);
   updateDisplay();
 });
 
@@ -150,12 +192,18 @@ spinBtn.addEventListener('click', async () => {
 
   spinning = true;
   spinBtn.disabled = true;
+  betMinus1000000.disabled = true;
+  betMinus100000.disabled = true;
+  betMinus10000.disabled = true;
   betMinus1000.disabled = true;
   betMinus100.disabled = true;
   betMinus10.disabled = true;
   betPlus10.disabled = true;
   betPlus100.disabled = true;
   betPlus1000.disabled = true;
+  betPlus10000.disabled = true;
+  betPlus100000.disabled = true;
+  betPlus1000000.disabled = true;
   credits -= bet;
   updateDisplay();
   messageEl.textContent = "Kugel rollt...";
@@ -187,12 +235,18 @@ spinBtn.addEventListener('click', async () => {
   updateDisplay();
   spinning = false;
   spinBtn.disabled = false;
+  betMinus1000000.disabled = false;
+  betMinus100000.disabled = false;
+  betMinus10000.disabled = false;
   betMinus1000.disabled = false;
   betMinus100.disabled = false;
   betMinus10.disabled = false;
   betPlus10.disabled = false;
   betPlus100.disabled = false;
   betPlus1000.disabled = false;
+  betPlus10000.disabled = false;
+  betPlus100000.disabled = false;
+  betPlus1000000.disabled = false;
 
   if (credits <= 0) {
     messageEl.textContent = "Guthaben aufgebraucht. Spiel wird zurückgesetzt.";

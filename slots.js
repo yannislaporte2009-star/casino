@@ -14,9 +14,13 @@ const spinBtn = document.getElementById('spin-btn');
 const betMinus10 = document.getElementById('bet-minus-10');
 const betMinus100 = document.getElementById('bet-minus-100');
 const betMinus1000 = document.getElementById('bet-minus-1000');
+const betMinushalb = document.getElementById('bet-minus-/2');
+const betMinusmin = document.getElementById('bet-minus-Min');
 const betPlus10 = document.getElementById('bet-plus-10');
 const betPlus100 = document.getElementById('bet-plus-100');
 const betPlus1000 = document.getElementById('bet-plus-1000');
+const betPlusdoppel = document.getElementById('bet-plus-x2');
+const betPlusmax = document.getElementById('bet-plus-Max');
 const escBtn = document.getElementById('esc');
 const reels = [document.getElementById('reel0'), document.getElementById('reel1'), document.getElementById('reel2')];
 
@@ -96,6 +100,17 @@ betMinus1000.addEventListener('click', () => {
   updateDisplay();
 });
 
+betMinushalb.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet / 2);
+  updateDisplay();
+});
+betMinusmin.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet = 10);
+  updateDisplay();
+});
+
 betPlus10.addEventListener('click', () => {
   if (spinning) return;
   bet = Math.min(1000000, bet + 10);
@@ -111,6 +126,18 @@ betPlus100.addEventListener('click', () => {
 betPlus1000.addEventListener('click', () => {
   if (spinning) return;
   bet = Math.min(1000000, bet + 1000);
+  updateDisplay();
+});
+
+betPlusdoppel.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000, bet * 2);
+  updateDisplay();
+});
+
+betPlusmax.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000, bet = credits);
   updateDisplay();
 });
 
@@ -147,6 +174,10 @@ spinBtn.addEventListener('click', async () => {
   betPlus100.disabled = true;
   betMinus1000.disabled = true;
   betPlus1000.disabled = true;
+  betMinushalb.disabled = true;
+  betPlusdoppel.disabled = true;
+  betMinusmin.disabled = true;
+  betPlusmax.disabled = true;
   credits -= bet;
   updateDisplay();
   messageEl.textContent = "Walzen drehen...";
@@ -184,6 +215,11 @@ spinBtn.addEventListener('click', async () => {
   betMinus100.disabled = false;
   betPlus1000.disabled = false;
   betMinus1000.disabled = false;
+  betPlusdoppel.disabled = false;
+  betMinushalb.disabled = false;
+  betPlusmax.disabled = false;
+  betMinusmin.disabled = false;
+  
 
 
   if (credits <= 0) {
