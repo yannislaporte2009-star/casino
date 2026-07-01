@@ -15,7 +15,7 @@ const creditsEl = document.getElementById('credits');
 const betEl = document.getElementById('bet-display');
 const messageEl = document.getElementById('message');
 const spinBtn = document.getElementById('spin-btn');
-const betMinusmin = document.getElementById('bet-minus-Min');
+const betMinusMin = document.getElementById('bet-minus-Min');
 const betMinushalb = document.getElementById('bet-minus-/2');
 const betMinus1000 = document.getElementById('bet-minus-1000');
 const betMinus100 = document.getElementById('bet-minus-100');
@@ -28,7 +28,6 @@ const betPlusmax = document.getElementById('bet-plus-Max');
 const escBtn = document.getElementById('esc');
 const wheelEl = document.getElementById('wheel');
 const numberInput = document.getElementById('number-input');
-
 const colorOptions = document.getElementById('color-options');
 const parityOptions = document.getElementById('parity-options');
 const numberOptions = document.getElementById('number-options');
@@ -57,15 +56,15 @@ escBtn.addEventListener('click', () => {
   window.location.href = "index.html";
 });
 
-betMinusmin.addEventListener('click', () => {
+betMinusMin.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet = 10);
+  bet = 10;
   updateDisplay();
 });
 
 betMinushalb.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet / 2);
+  bet = Math.max(10, Math.floor(bet / 2));
   updateDisplay();
 });
 
@@ -89,7 +88,7 @@ betMinus10.addEventListener('click', () => {
 
 betPlus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000, bet + 10 );
+  bet = Math.min(1000000000, bet + 10);
   updateDisplay();
 });
 
@@ -113,20 +112,19 @@ betPlusdoppel.addEventListener('click', () => {
 
 betPlusmax.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000, bet = credits);
+  bet = Math.min(credits, 1000000000);
   updateDisplay();
 });
+
 document.querySelectorAll('input[name="bet-type"]').forEach(radio => {
   radio.addEventListener('change', (e) => {
     currentBetType = e.target.value;
     colorOptions.style.display = currentBetType === 'color' ? '' : 'none';
     parityOptions.style.display = currentBetType === 'parity' ? '' : 'none';
     numberOptions.style.display = currentBetType === 'number' ? '' : 'none';
-
     if (currentBetType === 'color') currentChoice = 'red';
     if (currentBetType === 'parity') currentChoice = 'even';
     if (currentBetType === 'number') currentChoice = parseInt(numberInput.value) || 0;
-
     document.querySelectorAll('.bet-choice').forEach(b => b.classList.remove('active'));
   });
 });
@@ -177,8 +175,7 @@ spinBtn.addEventListener('click', async () => {
 
   spinning = true;
   spinBtn.disabled = true;
-  
-  betMinusmin.disabled = true;
+  betMinusMin.disabled = true;
   betMinushalb.disabled = true;
   betMinus1000.disabled = true;
   betMinus100.disabled = true;
@@ -194,7 +191,6 @@ spinBtn.addEventListener('click', async () => {
 
   const result = await spinWheel(2000);
   const color = getColor(result);
-
   let win = 0;
 
   if (currentBetType === 'color' && color === currentChoice) {
@@ -219,8 +215,7 @@ spinBtn.addEventListener('click', async () => {
   updateDisplay();
   spinning = false;
   spinBtn.disabled = false;
- 
-  betMinusmin.disabled = false;
+  betMinusMin.disabled = false;
   betMinushalb.disabled = false;
   betMinus1000.disabled = false;
   betMinus100.disabled = false;
@@ -230,7 +225,6 @@ spinBtn.addEventListener('click', async () => {
   betPlus1000.disabled = false;
   betPlusdoppel.disabled = false;
   betPlusmax.disabled = false;
- 
 
   if (credits <= 0) {
     messageEl.textContent = "Guthaben aufgebraucht. Spiel wird zurückgesetzt.";
