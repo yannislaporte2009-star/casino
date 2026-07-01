@@ -332,3 +332,7 @@
 .controls1 button:hover {
   background: #555;
 }
+.bet-choice.active {
+  background: #555;
+  border: 2px solid #fff;
+}
