@@ -15,7 +15,7 @@ const creditsEl = document.getElementById('credits');
 const betEl = document.getElementById('bet-display');
 const messageEl = document.getElementById('message');
 const spinBtn = document.getElementById('spin-btn');
-const betMinusMin = document.getElementById('bet-minus-Min');
+const betMinusmin = document.getElementById('bet-minus-Min');
 const betMinushalb = document.getElementById('bet-minus-/2');
 const betMinus1000 = document.getElementById('bet-minus-1000');
 const betMinus100 = document.getElementById('bet-minus-100');
@@ -28,6 +28,7 @@ const betPlusmax = document.getElementById('bet-plus-Max');
 const escBtn = document.getElementById('esc');
 const wheelEl = document.getElementById('wheel');
 const numberInput = document.getElementById('number-input');
+
 const colorOptions = document.getElementById('color-options');
 const parityOptions = document.getElementById('parity-options');
 const numberOptions = document.getElementById('number-options');
@@ -52,28 +53,80 @@ function saveHighscore(score) {
   localStorage.setItem('highscores', JSON.stringify(list));
 }
 
-escBtn.addEventListener('click', () => { window.location.href = "index.html"; });
+escBtn.addEventListener('click', () => {
+  window.location.href = "index.html";
+});
 
-betMinusMin.addEventListener('click', () => { if (spinning) return; bet = 10; updateDisplay(); });
-betMinushalb.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, Math.floor(bet / 2)); updateDisplay(); });
-betMinus1000.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, bet - 1000); updateDisplay(); });
-betMinus100.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, bet - 100); updateDisplay(); });
-betMinus10.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, bet - 10); updateDisplay(); });
-betPlus10.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet + 10); updateDisplay(); });
-betPlus100.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet + 100); updateDisplay(); });
-betPlus1000.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet + 1000); updateDisplay(); });
-betPlusdoppel.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet * 2); updateDisplay(); });
-betPlusmax.addEventListener('click', () => { if (spinning) return; bet = Math.min(credits, 1000000000); updateDisplay(); });
+betMinusmin.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet = 10);
+  updateDisplay();
+});
 
+betMinushalb.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet / 2);
+  updateDisplay();
+});
+
+betMinus1000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 1000);
+  updateDisplay();
+});
+
+betMinus100.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 100);
+  updateDisplay();
+});
+
+betMinus10.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.max(10, bet - 10);
+  updateDisplay();
+});
+
+betPlus10.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet + 10 );
+  updateDisplay();
+});
+
+betPlus100.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet + 100);
+  updateDisplay();
+});
+
+betPlus1000.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet + 1000);
+  updateDisplay();
+});
+
+betPlusdoppel.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet * 2);
+  updateDisplay();
+});
+
+betPlusmax.addEventListener('click', () => {
+  if (spinning) return;
+  bet = Math.min(1000000000, bet = credits);
+  updateDisplay();
+});
 document.querySelectorAll('input[name="bet-type"]').forEach(radio => {
   radio.addEventListener('change', (e) => {
     currentBetType = e.target.value;
     colorOptions.style.display = currentBetType === 'color' ? '' : 'none';
     parityOptions.style.display = currentBetType === 'parity' ? '' : 'none';
     numberOptions.style.display = currentBetType === 'number' ? '' : 'none';
+
     if (currentBetType === 'color') currentChoice = 'red';
     if (currentBetType === 'parity') currentChoice = 'even';
     if (currentBetType === 'number') currentChoice = parseInt(numberInput.value) || 0;
+
     document.querySelectorAll('.bet-choice').forEach(b => b.classList.remove('active'));
   });
 });
@@ -92,11 +145,6 @@ numberInput.addEventListener('change', () => {
   numberInput.value = val;
   if (currentBetType === 'number') currentChoice = val;
 });
-
-function setButtonsDisabled(state) {
-  [spinBtn, betMinusMin, betMinushalb, betMinus1000, betMinus100, betMinus10,
-   betPlus10, betPlus100, betPlus1000, betPlusdoppel, betPlusmax].forEach(b => b.disabled = state);
-}
 
 function spinWheel(duration) {
   return new Promise(resolve => {
@@ -119,42 +167,76 @@ function spinWheel(duration) {
 
 spinBtn.addEventListener('click', async () => {
   if (spinning) return;
-  if (credits < bet) { messageEl.textContent = "Nicht genug Guthaben!"; return; }
-  if (currentBetType === 'number') currentChoice = parseInt(numberInput.value) || 0;
+  if (credits < bet) {
+    messageEl.textContent = "Nicht genug Guthaben!";
+    return;
+  }
+  if (currentBetType === 'number') {
+    currentChoice = parseInt(numberInput.value) || 0;
+  }
 
   spinning = true;
-  setButtonsDisabled(true);
+  spinBtn.disabled = true;
+  
+  betMinusmin.disabled = true;
+  betMinushalb.disabled = true;
+  betMinus1000.disabled = true;
+  betMinus100.disabled = true;
+  betMinus10.disabled = true;
+  betPlus10.disabled = true;
+  betPlus100.disabled = true;
+  betPlus1000.disabled = true;
+  betPlusdoppel.disabled = true;
+  betPlusmax.disabled = true;
   credits -= bet;
   updateDisplay();
   messageEl.textContent = "Kugel rollt...";
 
   const result = await spinWheel(2000);
   const color = getColor(result);
+
   let win = 0;
 
   if (currentBetType === 'color' && color === currentChoice) {
     win = bet * 2;
   } else if (currentBetType === 'parity') {
     const isEven = result !== 0 && result % 2 === 0;
-    if ((currentChoice === 'even' && isEven) || (currentChoice === 'odd' && !isEven)) win = bet * 2;
+    if ((currentChoice === 'even' && isEven) || (currentChoice === 'odd' && !isEven)) {
+      win = bet * 2;
+    }
   } else if (currentBetType === 'number' && result === currentChoice) {
     win = bet * 35;
   }
 
   if (win > 0) {
     credits += win;
-    messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Gewonnen! +${win}`;
+    messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Gewonnen! +${win} Guthaben`;
     saveHighscore(win);
   } else {
-    messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Verloren.`;
+    messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Leider verloren.`;
   }
 
   updateDisplay();
   spinning = false;
-  setButtonsDisabled(false);
+  spinBtn.disabled = false;
+ 
+  betMinusmin.disabled = false;
+  betMinushalb.disabled = false;
+  betMinus1000.disabled = false;
+  betMinus100.disabled = false;
+  betMinus10.disabled = false;
+  betPlus10.disabled = false;
+  betPlus100.disabled = false;
+  betPlus1000.disabled = false;
+  betPlusdoppel.disabled = false;
+  betPlusmax.disabled = false;
+ 
 
   if (credits <= 0) {
     messageEl.textContent = "Guthaben aufgebraucht. Spiel wird zurückgesetzt.";
-    setTimeout(() => { credits = 100; updateDisplay(); }, 1500);
+    setTimeout(() => {
+      credits = 100;
+      updateDisplay();
+    }, 1500);
   }
 });
