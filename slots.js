@@ -24,6 +24,10 @@ const betPlusmax = document.getElementById('bet-plus-Max');
 const escBtn = document.getElementById('esc');
 const reels = [document.getElementById('reel0'), document.getElementById('reel1'), document.getElementById('reel2')];
 
+// Schalter (Toggles)
+const autospinToggle = document.getElementById('autospin');
+const autoMaxToggle = document.getElementById('auto-max-einsatz');
+
 updateDisplay();
 
 function randomSymbol() {
@@ -160,12 +164,20 @@ function spinReel(reelEl, duration) {
   });
 }
 
-spinBtn.addEventListener('click', async () => {
+async function doSpin() {
   if (spinning) return;
+
+  // Wenn "Auto Max" aktiv ist, Einsatz automatisch auf Maximum setzen
+  if (autoMaxToggle.checked) {
+    bet = credits;
+    updateDisplay();
+  }
+
   if (credits < bet) {
     messageEl.textContent = "Nicht genug Guthaben!";
     return;
   }
+
   spinning = true;
   spinBtn.disabled = true;
   betMinus10.disabled = true;
@@ -219,14 +231,26 @@ spinBtn.addEventListener('click', async () => {
   betMinushalb.disabled = false;
   betPlusmax.disabled = false;
   betMinusmin.disabled = false;
-  
-
 
   if (credits <= 0) {
     messageEl.textContent = "Guthaben aufgebraucht. Spiel wird zurückgesetzt.";
+    
     setTimeout(() => {
       credits = 100;
       updateDisplay();
-    }, 1500);
+    }, 100);
+  }
+
+  // Wenn Autospin noch aktiv ist, nach kurzer Pause automatisch weiterdrehen
+  if (autospinToggle.checked) {
+    setTimeout(doSpin, 1000);
+  }
+}
+
+spinBtn.addEventListener('click', doSpin);
+
+autospinToggle.addEventListener('change', () => {
+  if (autospinToggle.checked) {
+    doSpin();
   }
 });
