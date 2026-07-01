@@ -59,11 +59,11 @@ betMinushalb.addEventListener('click', () => { if (spinning) return; bet = Math.
 betMinus1000.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, bet - 1000); updateDisplay(); });
 betMinus100.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, bet - 100); updateDisplay(); });
 betMinus10.addEventListener('click', () => { if (spinning) return; bet = Math.max(10, bet - 10); updateDisplay(); });
-betPlus10.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet + 10); updateDisplay(); });
-betPlus100.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet + 100); updateDisplay(); });
-betPlus1000.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet + 1000); updateDisplay(); });
-betPlusdoppel.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000, bet * 2); updateDisplay(); });
-betPlusmax.addEventListener('click', () => { if (spinning) return; bet = Math.min(credits, 1000000000); updateDisplay(); });
+betPlus10.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000000, bet + 10); updateDisplay(); });
+betPlus100.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000000, bet + 100); updateDisplay(); });
+betPlus1000.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000000, bet + 1000); updateDisplay(); });
+betPlusdoppel.addEventListener('click', () => { if (spinning) return; bet = Math.min(1000000000000, bet * 2); updateDisplay(); });
+betPlusmax.addEventListener('click', () => { if (spinning) return; bet = Math.min(credits, 1000000000000); updateDisplay(); });
 
 document.querySelectorAll('input[name="bet-type"]').forEach(radio => {
   radio.addEventListener('change', (e) => {
