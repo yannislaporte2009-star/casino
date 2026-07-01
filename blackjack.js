@@ -99,30 +99,15 @@ betPlus1000.addEventListener('click', () => {
 });
 betPlusx2.addEventListener('click', () => {
   if (roundActive) return;
-<<<<<<< HEAD
-  bet = Math.min(1000000, bet * 2);
-=======
-  bet = Math.min(1000000000, bet + 10000);
->>>>>>> 06aa9d585d8d069e7b23c1a446c94bb6699091a8
-  updateDisplay();
-});
-betPlusMax.addEventListener('click', () => {
-  if (roundActive) return;
-<<<<<<< HEAD
-  bet = Math.min(1000000, bet = credits);
-  updateDisplay();
-});
-=======
-  bet = Math.min(1000000000, bet + 100000);
-  updateDisplay();
-});
-betPlus1000000.addEventListener('click', () => {
-  if (roundActive) return;
-  bet = Math.min(1000000000, bet + 1000000);
+  bet = Math.min(1000000000, bet * 2);
   updateDisplay();
 });
 
->>>>>>> 06aa9d585d8d069e7b23c1a446c94bb6699091a8
+betPlusMax.addEventListener('click', () => {
+  if (roundActive) return;
+  bet = Math.min(credits, 1000000000);
+  updateDisplay();
+});
 function buildDeck() {
   deck = [];
   for (const s of suits) {
