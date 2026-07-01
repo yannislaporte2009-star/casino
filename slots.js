@@ -107,7 +107,7 @@ betMinushalb.addEventListener('click', () => {
 });
 betMinusmin.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 100000000000000);
+  bet = Math.max(10, bet = 10);
   updateDisplay();
 });
 
