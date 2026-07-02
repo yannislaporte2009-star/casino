@@ -170,7 +170,10 @@ async function doSpin() {
   // Wenn "Auto Max" aktiv ist, Einsatz automatisch auf Maximum setzen
   if (autoMaxToggle.checked) {
     bet = credits / 10;
-    bet = Math.round(bet);    updateDisplay();
+    bet = Math.min(1000000000000, bet);
+    bet = Math.max(10, bet);  // Sicherstellen, dass der Einsatz mindestens 10 beträgt
+    bet = Math.round(bet);
+    updateDisplay();
   }
 
   if (credits < bet) {
