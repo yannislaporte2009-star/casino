@@ -46,32 +46,32 @@ escBtn.addEventListener('click', () => {
 
 betMinusMin.addEventListener('click', () => {
   if (spinning) return;
-  bet = 10;
+  bet = 1;
   updateDisplay();
 });
 
 betMinushalb.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, Math.floor(bet / 2));
+  bet = Math.max(1, Math.floor(bet / 2));
   bet = Math.round(bet);
   updateDisplay();
 });
 
 betMinus1000.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 1000);
+  bet = Math.max(1, bet - 1000);
   updateDisplay();
 });
 
 betMinus100.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 100);
+  bet = Math.max(1, bet - 100);
   updateDisplay();
 });
 
 betMinus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 10);
+  bet = Math.max(1, bet - 10);
   updateDisplay();
 });
 
