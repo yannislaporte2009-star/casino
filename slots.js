@@ -1,5 +1,5 @@
-const symbols = ["🎰", "🍒", "🍋", "🍇", "🔔"];
-const payouts = { "🎰": 50, "🍒": 10, "🍋": 10, "🍇": 10, "🔔": 30 };
+const symbols = ["🎰", "🍒", "🍋", "🍇", "🍌", "🥭","🔔"];
+const payouts = { "🎰": 50, "🍒": 10, "🍋": 10, "🍇": 10, "🍌": 10, "🥭": 10, "🔔": 30 };
 
 let credits = parseInt(localStorage.getItem('slotCredits')) || 100;
 
