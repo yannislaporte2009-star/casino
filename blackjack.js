@@ -61,6 +61,7 @@ betMinus1000.addEventListener('click', () => {
 betMinushalb.addEventListener('click', () => {
   if (roundActive) return;
   bet = Math.max(10, bet / 2);
+  bet = Math.round(bet);
   updateDisplay();
 });
 betMinusMin.addEventListener('click', () => {

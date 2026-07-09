@@ -53,6 +53,7 @@ betMinusMin.addEventListener('click', () => {
 betMinushalb.addEventListener('click', () => {
   if (spinning) return;
   bet = Math.max(10, Math.floor(bet / 2));
+  bet = Math.round(bet);
   updateDisplay();
 });
 
