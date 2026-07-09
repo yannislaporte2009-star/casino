@@ -8,7 +8,7 @@ function updateDisplay() {
 
 updateDisplay();
 
-// Spielername einmalig abfragen und in localStorage speichern
+
 function getPlayerName() {
   let name = localStorage.getItem('playerName');
   if (!name) {
@@ -22,7 +22,7 @@ function getPlayerName() {
   return name;
 }
 
-// Sicherstellen, dass beim ersten Besuch direkt nach dem Namen gefragt wird
+
 getPlayerName();
 
 const slotsBTN = document.getElementById('slot-machine');

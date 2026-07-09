@@ -245,7 +245,7 @@ async function endRound() {
     credits += win;
   }
 
-  // Bestes Guthaben immer prüfen und ggf. in der gemeinsamen Bestenliste aktualisieren
+  
   await saveHighscore(credits);
 
   updateDisplay();

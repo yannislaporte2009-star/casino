@@ -1,8 +1,3 @@
-// ===== Gemeinsame Bestenliste-Logik (JSONBin) =====
-// Wird von slots.js, roulette.js und blackjack.js benutzt.
-// Es wird IMMER nur der höchste Guthabenstand pro Spieler gespeichert,
-// egal in welchem Spiel er erreicht wurde.
-
 const JSONBIN_BIN_ID = '6a3e350dda38895dfe01939c';
 const JSONBIN_ACCESS_KEY = '$2a$10$titeiD3M2vVROlysgeWMU.paA12GSjVGUVumB/TaeJ0fGlp2yH6NC';
 const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID;
@@ -21,8 +16,7 @@ function getPlayerName() {
   return name;
 }
 
-// Prüft, ob currentCredits ein neuer Bestwert für den Spieler ist,
-// und speichert ihn in diesem Fall online in der gemeinsamen Bestenliste.
+
 async function saveHighscore(currentCredits) {
   const name = getPlayerName();
 
@@ -39,7 +33,7 @@ async function saveHighscore(currentCredits) {
       if (currentCredits > existingEntry.score) {
         existingEntry.score = currentCredits;
       } else {
-        // Kein neuer Bestwert -> nichts zu tun
+        
         return;
       }
     } else {

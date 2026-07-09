@@ -1,7 +1,3 @@
-// ===== Bestenliste-Logik =====
-// Liest die gemeinsame Highscore-Liste online über JSONBin.io (Konstanten aus highscore.js)
-// Format eines Eintrags: { name: "Max", score: 150 }
-
 async function getHighscores() {
   try {
     const response = await fetch(JSONBIN_URL + '/latest', {

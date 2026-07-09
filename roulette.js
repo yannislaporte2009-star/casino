@@ -199,7 +199,7 @@ spinBtn.addEventListener('click', async () => {
     messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Leider verloren.`;
   }
 
-  // Bestes Guthaben immer prüfen und ggf. in der gemeinsamen Bestenliste aktualisieren
+  
   await saveHighscore(credits);
 
   updateDisplay();

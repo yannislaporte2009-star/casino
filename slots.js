@@ -24,7 +24,7 @@ const betPlusmax = document.getElementById('bet-plus-Max');
 const escBtn = document.getElementById('esc');
 const reels = [document.getElementById('reel0'), document.getElementById('reel1'), document.getElementById('reel2')];
 
-// Schalter (Toggles)
+
 const autospinToggle = document.getElementById('autospin');
 const autoMaxToggle = document.getElementById('auto-max-einsatz');
 
@@ -119,11 +119,10 @@ function spinReel(reelEl, duration) {
 async function doSpin() {
   if (spinning) return;
 
-  // Wenn "Auto Max" aktiv ist, Einsatz automatisch auf Maximum setzen
   if (autoMaxToggle.checked) {
     bet = credits / 10;
     bet = Math.min(1000000000000, bet);
-    bet = Math.max(10, bet);  // Sicherstellen, dass der Einsatz mindestens 10 beträgt
+    bet = Math.max(10, bet);  
     bet = Math.round(bet);
     updateDisplay();
   }
@@ -147,7 +146,7 @@ async function doSpin() {
   betPlusmax.disabled = true;
   credits -= bet;
   updateDisplay();
-  messageEl.textContent = "Walzen drehen...";
+  messageEl.textContent = "Viel Glück!";
 
   const results = await Promise.all([
     spinReel(reels[0], 600),
@@ -169,7 +168,7 @@ async function doSpin() {
     messageEl.textContent = "Leider verloren. Nochmal versuchen!";
   }
 
-  // Bestes Guthaben immer prüfen und ggf. in der Bestenliste aktualisieren
+  
   await saveHighscore(credits);
 
   updateDisplay();
@@ -195,7 +194,7 @@ async function doSpin() {
     }, 100);
   }
 
-  // Wenn Autospin noch aktiv ist, nach kurzer Pause automatisch weiterdrehen
+  
   if (autospinToggle.checked) {
     setTimeout(doSpin, 1000);
   }
