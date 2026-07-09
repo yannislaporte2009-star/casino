@@ -40,54 +40,6 @@ function updateDisplay() {
   localStorage.setItem('slotCredits', credits);
 }
 
-// Speichert einen Gewinn in der Bestenliste (localStorage)
-const JSONBIN_BIN_ID = '6a3e350dda38895dfe01939c';
-const JSONBIN_ACCESS_KEY = '$2a$10$titeiD3M2vVROlysgeWMU.paA12GSjVGUVumB/TaeJ0fGlp2yH6NC';
-const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID;
-
-async function saveHighscore() {
-  let name = localStorage.getItem('playerName');
-  if (!name) {
-    try {
-      name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
-    } catch (e) {
-      name = "Spieler";
-    }
-    localStorage.setItem('playerName', name);
-  }
-
-  try {
-    // Aktuelle Bestenliste vom Server laden
-    const getResponse = await fetch(JSONBIN_URL + '/latest', {
-      headers: { 'X-Access-Key': JSONBIN_ACCESS_KEY }
-    });
-    const getData = await getResponse.json();
-    const list = (getData.record && getData.record.highscores) ? getData.record.highscores : [];
-
-    const existingEntry = list.find(entry => entry.name === name);
-
-    if (existingEntry) {
-      if (credits > existingEntry.score) {
-        existingEntry.score = credits;
-      }
-    } else {
-      list.push({ name: name, score: credits });
-    }
-
-    // Aktualisierte Liste zurück auf den Server schreiben
-    await fetch(JSONBIN_URL, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Key': JSONBIN_ACCESS_KEY
-      },
-      body: JSON.stringify({ highscores: list })
-    });
-  } catch (e) {
-    console.error('Highscore konnte nicht gespeichert werden:', e);
-  }
-}
-
 betMinus10.addEventListener('click', () => {
   if (spinning) return;
   bet = Math.max(10, bet - 10);
@@ -217,9 +169,8 @@ async function doSpin() {
     messageEl.textContent = "Leider verloren. Nochmal versuchen!";
   }
 
-  if (win > 0) {
-    await saveHighscore();
-  }
+  // Bestes Guthaben immer prüfen und ggf. in der Bestenliste aktualisieren
+  await saveHighscore(credits);
 
   updateDisplay();
   spinning = false;

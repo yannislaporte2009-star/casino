@@ -38,18 +38,6 @@ function updateDisplay() {
   localStorage.setItem('slotCredits', credits);
 }
 
-function saveHighscore(score) {
-  let name = localStorage.getItem('playerName');
-  if (!name) {
-    name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
-    localStorage.setItem('playerName', name);
-  }
-  const data = localStorage.getItem('highscores');
-  const list = data ? JSON.parse(data) : [];
-  list.push({ name: name, score: score });
-  localStorage.setItem('highscores', JSON.stringify(list));
-}
-
 escBtn.addEventListener('click', () => {
   window.location.href = "index.html";
 });
@@ -217,7 +205,7 @@ standBtn.addEventListener('click', () => {
   endRound();
 });
 
-function endRound() {
+async function endRound() {
   roundActive = false;
   hitBtn.disabled = true;
   standBtn.disabled = true;
@@ -255,8 +243,10 @@ function endRound() {
 
   if (win > 0) {
     credits += win;
-    if (win > bet) saveHighscore(win);
   }
+
+  // Bestes Guthaben immer prüfen und ggf. in der gemeinsamen Bestenliste aktualisieren
+  await saveHighscore(credits);
 
   updateDisplay();
   dealBtn.disabled = false;

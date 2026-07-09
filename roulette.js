@@ -40,18 +40,6 @@ function updateDisplay() {
   localStorage.setItem('slotCredits', credits);
 }
 
-function saveHighscore(score) {
-  let name = localStorage.getItem('playerName');
-  if (!name) {
-    name = prompt("Wie ist dein Name?", "Spieler") || "Spieler";
-    localStorage.setItem('playerName', name);
-  }
-  const data = localStorage.getItem('highscores');
-  const list = data ? JSON.parse(data) : [];
-  list.push({ name: name, score: score });
-  localStorage.setItem('highscores', JSON.stringify(list));
-}
-
 escBtn.addEventListener('click', () => {
   window.location.href = "index.html";
 });
@@ -207,10 +195,12 @@ spinBtn.addEventListener('click', async () => {
   if (win > 0) {
     credits += win;
     messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Gewonnen! +${win} Guthaben`;
-    saveHighscore(win);
   } else {
     messageEl.textContent = `Zahl ${result} (${color === 'red' ? 'Rot' : color === 'black' ? 'Schwarz' : 'Grün'}) – Leider verloren.`;
   }
+
+  // Bestes Guthaben immer prüfen und ggf. in der gemeinsamen Bestenliste aktualisieren
+  await saveHighscore(credits);
 
   updateDisplay();
   spinning = false;

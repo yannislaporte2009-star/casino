@@ -1,10 +1,6 @@
 // ===== Bestenliste-Logik =====
-// Liest die gemeinsame Highscore-Liste online über JSONBin.io
+// Liest die gemeinsame Highscore-Liste online über JSONBin.io (Konstanten aus highscore.js)
 // Format eines Eintrags: { name: "Max", score: 150 }
-
-const JSONBIN_BIN_ID = '6a3e350dda38895dfe01939c';
-const JSONBIN_ACCESS_KEY = '$2a$10$titeiD3M2vVROlysgeWMU.paA12GSjVGUVumB/TaeJ0fGlp2yH6NC';
-const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN_ID;
 
 async function getHighscores() {
   try {
