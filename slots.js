@@ -69,31 +69,31 @@ betMinusmin.addEventListener('click', () => {
 
 betPlus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000000, bet + 10);
+  bet = Math.min(1000000000000000000, bet + 10);
   updateDisplay();
 });
 
 betPlus100.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000000, bet + 100);
+  bet = Math.min(10000000000000000, bet + 100);
   updateDisplay();
 });
 
 betPlus1000.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000000, bet + 1000);
+  bet = Math.min(1000000000000000000, bet + 1000);
   updateDisplay();
 });
 
 betPlusdoppel.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000000, bet * 2);
+  bet = Math.min(1000000000000000000, bet * 2);
   updateDisplay();
 });
 
 betPlusmax.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.min(1000000000000, bet = credits);
+  bet = Math.min(1000000000000000000, bet = credits);
   updateDisplay();
 });
 
