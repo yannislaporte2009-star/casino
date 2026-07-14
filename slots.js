@@ -42,29 +42,29 @@ function updateDisplay() {
 
 betMinus10.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 10);
+  bet = Math.max(1, bet - 10);
   updateDisplay();
 });
 betMinus100.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 100);
+  bet = Math.max(1, bet - 100);
   updateDisplay();
 });
 betMinus1000.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet - 1000);
+  bet = Math.max(1, bet - 1000);
   updateDisplay();
 });
 
 betMinushalb.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet / 2);
+  bet = Math.max(1, bet / 2);
   bet = Math.round(bet);
   updateDisplay();
 });
 betMinusmin.addEventListener('click', () => {
   if (spinning) return;
-  bet = Math.max(10, bet = 10);
+  bet = Math.max(1, bet = 1);
   updateDisplay();
 });
 
@@ -186,7 +186,7 @@ async function doSpin() {
   betPlusmax.disabled = false;
   betMinusmin.disabled = false;
 
-  if (credits <= 0) {
+  if (credits <= 9) {
     messageEl.textContent = "Guthaben aufgebraucht. Spiel wird zurückgesetzt.";
     
     setTimeout(() => {
